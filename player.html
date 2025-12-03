@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airsonic MCP Player</title>
+    <link rel="stylesheet" href="/theme/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>airsonic mcp player</h1>
+            <div class="subtitle">premium music control powered by ai</div>
+        </div>
+        
+        <!-- Minimalist single-line player -->
+        <div class="player-bar status stopped" id="playerBar">
+            <div class="player-top">
+                <div class="player-info">
+                    <div class="player-title" id="playerTitle">No song playing</div>
+                    <div class="player-artist" id="playerArtist">Select a song to play</div>
+                </div>
+                <div class="player-controls">
+                    <span class="player-status" id="playerStatus">Stopped</span>
+                    <button class="player-btn" id="playBtn" onclick="playCurrent()" disabled title="Play">▶</button>
+                    <button class="player-btn" id="pauseBtn" onclick="pausePlayback()" disabled title="Pause">⏸</button>
+                    <button class="player-btn" id="stopBtn" onclick="stopPlayback()" disabled title="Stop">⏹</button>
+                </div>
+            </div>
+            <div class="player-bottom">
+                <span class="time-display" id="timeDisplay">0:00 / 0:00</span>
+                <input type="range" id="seekSlider" class="seek-slider" min="0" max="100" value="0" oninput="seekTo(this.value)" onchange="seekTo(this.value)">
+                <div class="volume-control">
+                    <span class="volume-icon" id="volumeIcon" onclick="toggleMute()">🔊</span>
+                    <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="100" oninput="setVolume(this.value)">
+                </div>
+            </div>
+        </div>
+        
+        <audio id="audioPlayer" class="audio-player"></audio>
+        
+        <!-- Content area with tabs -->
+        <div class="content-section">
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('browse')">browse</button>
+                <button class="tab" onclick="switchTab('search')">search</button>
+            </div>
+            
+            <!-- Browse Tab -->
+            <div id="browseTab" class="tab-content active">
+                <button class="browse-button gradient-text" onclick="loadRandomSongs()"><span>load random songs</span></button>
+                <div class="songs-list" id="browseResults"></div>
+            </div>
+            
+            <!-- Search Tab -->
+            <div id="searchTab" class="tab-content">
+                <div class="search-input-container">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search for songs, artists, albums..." onkeypress="handleSearchKeyPress(event)">
+                </div>
+                <button class="search-button gradient-text" onclick="searchSongs()"><span>search</span></button>
+                <div class="songs-list" id="searchResults"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/theme/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "airsonic": {
+    "server_url": "http://AIRSONIC_IP:4040",
+    "username": "AIRSONIC_USER_PASSWORD",
+    "password": "AIRSONIC_PASSWORD",
+    "api_version": "1.15.0",
+    "use_token_auth": true
+  }
+}
+
